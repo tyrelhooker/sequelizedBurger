@@ -1,0 +1,13 @@
+{{!-- Displays name and devour state button to page --}}
+<li>
+	<div class="burger-name">
+		{{burger_name}}
+	</div>
+	<div class="progress" style="width:100px">
+		<div id="progressbar{{id}}" class="progress-bar progress-bar-striped progress-bar-animated" style="width: 2%"></div>
+	</div>
+	<button class="change-devoured" data-id="{{id}}" data-newdevoured="{{devour}}">
+		{{#if devour}}Devour{{else}}Order Again{{/if}}
+	</button>
+	<br>
+</li>

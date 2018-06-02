@@ -1,0 +1,86 @@
+body {
+  background-color: oldlace;
+  margin-top: 10px;
+}
+
+.main-title {
+  text-align: center;
+  padding: 20px;
+  background-color: #B78654;
+  border-radius: 150px 150px 0px 0px;
+}
+
+.row {
+  background-color: oldlace;
+}
+
+.title {
+  text-align: center;
+  background-color: oldlace;
+  padding: 5px 5px;
+}
+
+h1 {
+  font-weight: 900;
+}
+
+h2 {
+  background-color: tomato;
+}
+
+ul {
+  background-color:  #a2c658;
+  padding: 5px 0px 20px 0px;
+  margin: 0px;
+}
+
+li {
+  list-style-type: none;
+  padding: 5px;
+  text-align: center;
+}
+
+.change-devoured {
+  margin-top: 5px;
+  background-color: #F9CA33;
+  border-radius: 10px 10px;
+}
+
+.add-burg {
+  background-color: #F9CA33;
+  border-radius: 10px 10px;
+}
+
+.progress {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.progress-bar-animated {
+  background-color: tomato;
+}
+
+.burger-name {
+  font-weight: 800;
+}
+
+.footer {
+  text-align: center;
+  background-color: #B78654;
+  border-radius: 0px 0px 50px 50px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.create-form {
+  background-color:  #a2c658;
+  padding: 5px 5px 15px 5px;
+}
+
+#burg {
+  background-color: burlywood;
+}
+
+label[for=burg] {
+  font-weight: 800;
+}
