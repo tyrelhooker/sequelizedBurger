@@ -1,44 +1,40 @@
 // Dependencies
-var express = require("express");
-var burger = require("../models/burger.js");
-var router = express.Router();
+
+var db = require("../models");
+var path = require("path");
+
 
 // ROUTES 
-
-router.get("/", function(req, res) {
-  burger.selectAll(function(data) {
-    var hbsObject = {
-      burgers: data
-    };
-    console.log(hbsObject);
-    res.render("index", hbsObject);
-  });
-});
-
-router.post("/api/burgers", function(req, res) {
-  burger.insertOne(
-    ["burger_name", "devoured"], 
-    [req.body.burger_name, req.body.devoured], 
-    function(result) {
-      res.json({ id: result.insertId 
+module.exports = function(app) {
+  app.get("/", function(req, res) {
+    db.burger.findAll({burger_names}).then(function(data) {
+      res.json(data);
+      // var hbsObject = res.json(data);
+      // console.log(hbsObject);
+      // res.render("index", hbsObject);
     });
   });
-});
 
-router.put("/api/burgers/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
-  console.log("condition", condition);
-
-  burger.updateOne({
-    devoured: req.body.devoured
-  }, condition, function(result) {
-    if (result.changedRows == 0) {
-      return res.status(404).end();
-    } else {
-      res.status(200).end();
-    }
+  app.post("/api/burgers", function(req, res) {
+    db.burger.create(req.body).then(function(results){
+      res.json(results);
+    }).catch(function(error) {
+      console.log("You have an error with .create");
+    });
   });
-});
 
-// Exports the routes to server.js
-module.exports = router;
+  app.put("/api/burgers", function(req, res) {
+    db.update(req.body, {
+      where: {
+        devoured: req.body.devoured,
+        id: req.params.id
+      }
+    }).then(function(results) {
+      if (results.changedRows == 0) {
+        return res.status(404).end();
+      } else {
+        res.status(200).end();
+      }
+    })
+  })
+};

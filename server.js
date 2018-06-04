@@ -2,9 +2,12 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
-var routes = require("./controllers/burgers_controller.js");
+
 var PORT = process.env.PORT || 8080;
 var app = express();
+
+// Requiring models for syncing with db.
+var db = require("./models");
 
 // Environment Variables - Serves static content for the app from the public directory, parse application/url & parse application/json, & Sets handlebars
 app.use(express.static("public"));
@@ -14,9 +17,11 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Gives server access to the imported routes from burger_controller.js
-app.use(routes);
+require("./controllers/burgers_controller.js")(app);
 
-// Starts the server so that it can begin listening to client requests.
-app.listen(PORT, function() {
-  console.log("Server is listening on: http://localhost: " + PORT);
+// Sync sequelized model and starting Express app. Add { force: true }??????????
+db.sequelize.sync().then(function() {
+  app.listen(PORT, function() {
+    console.log("Server is listening on: http://localhost: " + PORT);
+  });
 });
