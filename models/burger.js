@@ -28,7 +28,7 @@ var Sequelize = require("sequelize");
 var sequelize = require("../config/config.json");
 
 module.exports = function(sequelize, DataTypes) {
-  var Burger = sequelize.define("burger", {
+  var Burger = sequelize.define("Burger", {
     burger_name: {
       type: DataTypes.STRING,
       allowNull: false,
