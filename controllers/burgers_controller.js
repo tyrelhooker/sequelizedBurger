@@ -1,12 +1,13 @@
 // Dependencies
 var express = require("express");
-var burger = require("../models/burger.js");
 var router = express.Router();
+var db = require("../models");
+
 
 // ROUTES 
 
-module.exports = function(app) {
-  app.get("/", function(req, res) {
+// module.exports = function(app) {
+  router.get("/", function(req, res) {
     db.Burger.findAll({}).then(function(data) {
       var hbsObject = {
         burgers: data
@@ -16,7 +17,7 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/burgers", function(req, res) {
+  router.post("/api/burgers", function(req, res) {
     db.Burger.create({
       burger_name: req.body.burger_name,
       devoured: req.body.devoured
@@ -27,7 +28,7 @@ module.exports = function(app) {
     });
   });
 
-  app.put("/api/burgers", function(req, res) {
+  router.put("/api/burgers/:id", function(req, res) {
     db.Burger.update(req.body, {
       devoured: req.body.devoured
     }, {
@@ -42,4 +43,6 @@ module.exports = function(app) {
       }
     });
   });
-};
+// };
+
+module.exports = router;
