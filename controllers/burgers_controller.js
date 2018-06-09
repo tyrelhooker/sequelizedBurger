@@ -9,8 +9,11 @@ var db = require("../models");
 // module.exports = function(app) {
   router.get("/", function(req, res) {
     db.Burger.findAll({}).then(function(data) {
+      console.log(data[0])
       var hbsObject = {
-        burgers: data
+        burgers: data.map((d)=>{
+          return d.dataValues
+        })
       };
       console.log(hbsObject);
       res.render("index", hbsObject);

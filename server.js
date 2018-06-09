@@ -19,8 +19,9 @@ app.use(bodyParser.json());
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-app.use(routes);
 app.use(express.static(__dirname + "/public"));
+
+app.use(routes);
 
 
 // Sync sequelized model and starting Express app. Add { force: true }??????????

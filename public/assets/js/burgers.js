@@ -9,6 +9,7 @@ $(function() {
       currentBites++;
       $(this).siblings('.progress').find('.progress-bar').css("width", Math.round(100 * currentBites / totalBites) + "%");
     } else {
+      console.log(this)
       var id = $(this).data("id");
       var newDevoured = $(this).data("newdevoured");
   
