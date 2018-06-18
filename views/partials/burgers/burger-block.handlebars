@@ -6,6 +6,12 @@
 	<div class="progress" style="width:100px">
 		<div id="progressbar{{id}}" class="progress-bar progress-bar-striped progress-bar-animated" style="width: 2%"></div>
 	</div>
+	<form class="create-form">
+		<div class="form-group">
+			<label for="customerName">Customer:</label>
+			<input type="text" id="customerName" name="custName">
+		</div>
+	</form>
 	<button class="change-devoured" data-id="{{id}}" data-newdevoured="{{devour}}">
 		{{#if devour}}Devour{{else}}Order Again{{/if}}
 	</button>
